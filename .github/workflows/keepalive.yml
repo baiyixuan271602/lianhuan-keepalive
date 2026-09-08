@@ -11,7 +11,8 @@ jobs:
         run: |
           for u in \
             https://lianhuan-jtps.onrender.com/ \
-            https://spicy-monopoly-mcp.onrender.com/ \
+            https://spicy-monopoly.lol/ \
+            https://spicy-monopoly-api.onrender.com/ \
             https://zhangxinchuang-mcp-3mdm.onrender.com/ \
             https://zhangxinchuang-server-unno.onrender.com/health ; do
             curl -s -o /dev/null -m 55 -w "%{http_code} $u\n" -L "$u" || true
