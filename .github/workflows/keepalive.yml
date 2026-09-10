@@ -11,7 +11,7 @@ jobs:
         run: |
           for u in \
             https://lianhuan-jtps.onrender.com/ \
-            https://tidal-echo-bfuf.onrender.com/ \
+            https://polaris-oung.onrender.com/ \
             https://spicy-monopoly.lol/ \
             https://spicy-monopoly-api.onrender.com/ \
             https://zhangxinchuang-mcp-3mdm.onrender.com/ \
