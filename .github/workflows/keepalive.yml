@@ -1,10 +1,11 @@
 name: keepalive
+
 on:
   schedule:
     - cron: '*/10 * * * *'
   workflow_dispatch: {}
 
-# LOOPV2: 长跑循环避开 GitHub 调度延迟，每~10分钟打一次，让 Render 免费服务不打盹
+# V4 loop: 全天每~10分钟叫醒一轮；结尾防脚本自断
 jobs:
   ping:
     runs-on: ubuntu-latest
@@ -12,12 +13,12 @@ jobs:
     steps:
       - name: dense ping loop
         run: |
-          URLS="https://lianhuan-jtps.onrender.com/ https://polaris-oung.onrender.com/ https://ombre-brain-mw39.onrender.com/health https://spicy-monopoly.lol/ https://spicy-monopoly-api.onrender.com/ https://zhangxinchuang-mcp-3mdm.onrender.com/health https://zhangxinchuang-server-unno.onrender.com/health https://home-backend-eetq.onrender.com/health"
-          for i in $(seq 1 31); do
+          URLS="https://lianhuan-jtps.onrender.com/ https://polaris-oung.onrender.com/ https://ombre-brain-mw39.onrender.com/health https://spicy-monopoly.lol/ https://spicy-monopoly-api.onrender.com/ https://zhangxinchuang-mcp-3mdm.onrender.com/health https://zhangxinchuang-server-unno.onrender.com/health"
+          for i in $(seq 1 33); do
             echo "== round $i =="
             for u in $URLS; do
-              curl -s -o /dev/null -m 25 -w "%{http_code} $u
-" -L "$u" || true
+              curl -s -o /dev/null -m 25 -L "$u" || true
             done
-            [ $i -lt 31 ] && sleep 600
+            if [ $i -lt 33 ]; then sleep 600; fi
           done
+          echo LOOP-DONE
